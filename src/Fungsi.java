@@ -1,8 +1,12 @@
 
+import java.awt.CardLayout;
+import java.awt.Container;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -52,6 +56,26 @@ public class Fungsi {
 	    e.printStackTrace();
 	}
 	return result;
+    }
+    
+    public String login(String username, String password) {
+	ResultSet result = executeResult("select * from orang where NOKRP='" + username + "' and PASSWORD='" + password + "'");
+	String nokrp = null;
+	try {
+	    if (result.next()) {
+		nokrp = result.getString("NOKRP");
+	    } else {
+		JOptionPane.showMessageDialog(null, "No KRP atau password salah");
+	    }
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+	return nokrp;
+    }
+    
+    public void loncatCard(Container container, String cardName) {
+	CardLayout cardLayout = (CardLayout) container.getLayout();
+	cardLayout.show(container, cardName);
     }
     
     
