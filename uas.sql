@@ -4,34 +4,6 @@
 /*==============================================================*/
 
 
-alter table ADMIN 
-   drop foreign key FK_ADMIN_TERDIRI3_ORANG;
-
-alter table DOSEN 
-   drop foreign key FK_DOSEN_TERDIRI_ORANG;
-
-alter table MAHASISWA 
-   drop foreign key FK_MAHASISW_TERDIRI2_ORANG;
-
-
-alter table ADMIN 
-   drop foreign key FK_ADMIN_TERDIRI3_ORANG;
-
-drop table if exists ADMIN;
-
-
-alter table DOSEN 
-   drop foreign key FK_DOSEN_TERDIRI_ORANG;
-
-drop table if exists DOSEN;
-
-
-alter table MAHASISWA 
-   drop foreign key FK_MAHASISW_TERDIRI2_ORANG;
-
-drop table if exists MAHASISWA;
-
-drop table if exists ORANG;
 
 /*==============================================================*/
 /* Table: ADMIN                                                 */
