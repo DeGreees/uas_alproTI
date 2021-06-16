@@ -1,4 +1,5 @@
 
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 /*
@@ -13,12 +14,55 @@ import javax.swing.JOptionPane;
 public class Halutama extends javax.swing.JFrame {
     Fungsi fungsi = new Fungsi();
     String nokrp = null;
+    int jabatan = 0;
 
     /**
      * Creates new form Halutama
      */
     public Halutama() {
 	initComponents();
+    }
+    
+    public void getProfile() {
+	try {
+	    ResultSet result = fungsi.executeResult("select * from orang where NOKRP='" + nokrp + "'");
+	    if (result.next()) {
+		jLabel2.setText("SELAMAT DATANG, " + result.getString("NAMA"));
+		lblNama.setText(result.getString("NAMA"));
+		lblAlamat.setText(result.getString("ALAMAT"));
+		String jk = result.getString("JENIS_KELAMIN");
+		if ("L".equals(jk)) {
+		    txtJK.setText("Laki-Laki");
+		} else {
+		    txtJK.setText("Perempuan");
+		}
+		lblTglLahir.setText(result.getString("TGL_LAHIR"));
+		txtNRP.setText(result.getString("NOKRP"));
+		if (jabatan == 1) {
+		    jLabel4.setText("No KRP");
+		    lblJurusan.setVisible(false);
+		    lblStatus.setVisible(false);
+		    jLabel6.setVisible(false);
+		    jLabel8.setVisible(false);
+			
+		} else if (jabatan == 2) {
+		    jLabel4.setText("NIP");
+		    lblJurusan.setVisible(false);
+		    lblStatus.setVisible(true);
+		    jLabel6.setVisible(true);
+		    jLabel8.setVisible(false);
+		} else if (jabatan == 3) {
+		    jLabel4.setText("NRP");
+		    lblJurusan.setVisible(true);
+		    lblStatus.setVisible(true);
+		    jLabel6.setVisible(true);
+		    jLabel8.setVisible(true);
+		}
+	    }
+
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
     }
 
     /**
@@ -47,6 +91,9 @@ public class Halutama extends javax.swing.JFrame {
         btnmatkul = new javax.swing.JButton();
         btnlogout = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
+        jPanel12 = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -54,17 +101,15 @@ public class Halutama extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtNama = new javax.swing.JLabel();
-        txtAlamat = new javax.swing.JLabel();
+        lblNama = new javax.swing.JLabel();
+        lblAlamat = new javax.swing.JLabel();
         txtNRP = new javax.swing.JLabel();
         txtJK = new javax.swing.JLabel();
-        txtStatus = new javax.swing.JLabel();
+        lblStatus = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txtJurusan = new javax.swing.JLabel();
+        lblJurusan = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        lblTglLahir = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 102, 255));
@@ -73,6 +118,11 @@ public class Halutama extends javax.swing.JFrame {
         jPanel10.setLayout(new java.awt.CardLayout());
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
+        jPanel1.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jPanel1ComponentShown(evt);
+            }
+        });
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
@@ -175,12 +225,22 @@ public class Halutama extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(0, 0, 51));
 
         btnberanda.setText("Beranda");
+        btnberanda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnberandaActionPerformed(evt);
+            }
+        });
 
         btnjadwal.setText("jadwal");
 
         btnmatkul.setText("Mata Kuliah");
 
         btnlogout.setText("Logout");
+        btnlogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlogoutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -211,6 +271,47 @@ public class Halutama extends javax.swing.JFrame {
 
         jPanel8.setLayout(new java.awt.CardLayout());
 
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jPanel8.add(jPanel12, "matakuliah");
+
+        jLabel10.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        jLabel10.setText("JADWAL");
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel10)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel8.add(jPanel11, "jadwal");
+
+        jPanel9.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jPanel9ComponentShown(evt);
+            }
+        });
+
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jLabel2.setText("SELAMAT DATANG, ");
 
@@ -224,27 +325,23 @@ public class Halutama extends javax.swing.JFrame {
 
         jLabel7.setText("Alamat");
 
-        txtNama.setText("jLabel8");
+        lblNama.setText("jLabel8");
 
-        txtAlamat.setText("jLabel9");
+        lblAlamat.setText("jLabel9");
 
         txtNRP.setText("jLabel10");
 
         txtJK.setText("jLabel11");
 
-        txtStatus.setText("jLabel12");
+        lblStatus.setText("jLabel12");
 
         jLabel8.setText("Jurusan");
 
-        txtJurusan.setText("jLabel11");
+        lblJurusan.setText("jLabel11");
 
         jLabel9.setText("Tanggal Lahir");
 
-        jLabel10.setText("jLabel10");
-
-        jLabel11.setText("jLabel11");
-
-        jLabel12.setText("jLabel12");
+        lblTglLahir.setText("jLabel10");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -253,12 +350,11 @@ public class Halutama extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel2)
-                        .addGroup(jPanel9Layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtNama)))
+                    .addComponent(jLabel2)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(92, 92, 92)
+                        .addComponent(lblNama))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
@@ -266,18 +362,16 @@ public class Halutama extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
                             .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel11))
+                            .addComponent(jLabel9))
                         .addGap(53, 53, 53)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel10)
-                            .addComponent(txtJurusan)
+                            .addComponent(lblTglLahir)
+                            .addComponent(lblJurusan)
                             .addComponent(txtNRP)
-                            .addComponent(txtAlamat)
+                            .addComponent(lblAlamat)
                             .addComponent(txtJK)
-                            .addComponent(txtStatus))))
-                .addContainerGap(440, Short.MAX_VALUE))
+                            .addComponent(lblStatus))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,15 +385,11 @@ public class Halutama extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtNama))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtJurusan))
+                    .addComponent(lblNama))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(txtAlamat))
+                    .addComponent(lblAlamat))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -307,19 +397,19 @@ public class Halutama extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel10))
+                    .addComponent(lblTglLahir))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel12))
-                .addGap(37, 37, 37)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtStatus))
-                .addContainerGap(172, Short.MAX_VALUE))
+                    .addComponent(lblStatus))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(lblJurusan))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel8.add(jPanel9, "card2");
+        jPanel8.add(jPanel9, "berandaProfile");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -367,9 +457,37 @@ public class Halutama extends javax.swing.JFrame {
         // TODO add your handling code here:
 	nokrp = fungsi.login(txtuser.getText(), txtpass.getText());
 	if (nokrp != null) {
+	    jabatan = fungsi.getJabatan(nokrp);
+	    getProfile();
 	    fungsi.loncatCard(jPanel10, "beranda");
+	    fungsi.loncatCard(jPanel8, "berandaProfile");
 	}
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void jPanel9ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel9ComponentShown
+        // TODO add your handling code here:
+	getProfile();
+	
+    }//GEN-LAST:event_jPanel9ComponentShown
+
+    private void btnberandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnberandaActionPerformed
+        // TODO add your handling code here:
+	getProfile();
+	fungsi.loncatCard(jPanel8, "berandaProfile");
+    }//GEN-LAST:event_btnberandaActionPerformed
+
+    private void btnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogoutActionPerformed
+        // TODO add your handling code here:
+	nokrp = null;
+	fungsi.loncatCard(jPanel10, "login");
+	
+    }//GEN-LAST:event_btnlogoutActionPerformed
+
+    private void jPanel1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel1ComponentShown
+        // TODO add your handling code here:
+	txtpass.setText("");
+	txtuser.setText("");
+    }//GEN-LAST:event_jPanel1ComponentShown
 
     /**
      * @param args the command line arguments
@@ -414,8 +532,6 @@ public class Halutama extends javax.swing.JFrame {
     private javax.swing.JButton btnmatkul;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -426,6 +542,8 @@ public class Halutama extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -434,12 +552,13 @@ public class Halutama extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JLabel txtAlamat;
+    private javax.swing.JLabel lblAlamat;
+    private javax.swing.JLabel lblJurusan;
+    private javax.swing.JLabel lblNama;
+    private javax.swing.JLabel lblStatus;
+    private javax.swing.JLabel lblTglLahir;
     private javax.swing.JLabel txtJK;
-    private javax.swing.JLabel txtJurusan;
     private javax.swing.JLabel txtNRP;
-    private javax.swing.JLabel txtNama;
-    private javax.swing.JLabel txtStatus;
     private javax.swing.JTextField txtpass;
     private javax.swing.JTextField txtuser;
     // End of variables declaration//GEN-END:variables
