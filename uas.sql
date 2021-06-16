@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     16/06/2021 13:43:50                          */
+/* Created on:     16/06/2021 23:58:52                          */
 /*==============================================================*/
 
 
@@ -39,7 +39,6 @@ drop table if exists ORANG;
 create table ADMIN
 (
    NOKRP                varchar(20) not null  comment '',
-   NAMA                 varchar(30)  comment '',
    primary key (NOKRP)
 );
 
@@ -49,9 +48,7 @@ create table ADMIN
 create table DOSEN
 (
    NOKRP                varchar(20) not null  comment '',
-   NAMA                 varchar(30)  comment '',
    NIK                  varchar(15)  comment '',
-   JENIS_KELAMIN        varchar(15)  comment '',
    primary key (NOKRP)
 );
 
@@ -61,9 +58,7 @@ create table DOSEN
 create table MAHASISWA
 (
    NOKRP                varchar(20) not null  comment '',
-   NAMA                 varchar(30)  comment '',
    PRODI                varchar(20)  comment '',
-   JENIS_KELAMIN        varchar(15)  comment '',
    primary key (NOKRP)
 );
 
@@ -74,7 +69,6 @@ create table ORANG
 (
    NOKRP                varchar(20) not null  comment '',
    NAMA                 varchar(30)  comment '',
-   PRODI                varchar(20)  comment '',
    JENIS_KELAMIN        varchar(15)  comment '',
    TGL_LAHIR            date  comment '',
    NOTELP               varchar(11)  comment '',

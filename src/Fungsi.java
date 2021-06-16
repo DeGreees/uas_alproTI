@@ -78,5 +78,28 @@ public class Fungsi {
 	cardLayout.show(container, cardName);
     }
     
+    public int getJabatan(String nokrp) {
+	int jabatan = 0;
+	ResultSet result = null;
+	try {
+	    result = executeResult("select * from admin where NOKRP='" + nokrp + "'");
+	    if (result.next()) {
+		jabatan = 1;
+	    }
+	    result = executeResult("select * from dosen where NOKRP='" + nokrp + "'");
+	    if (result.next()) {
+		jabatan = 2;
+	    }
+	    result = executeResult("select * from mahasiswa where NOKRP='" + nokrp + "'");
+	    if (result.next()) {
+		jabatan = 3;
+	    }
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+	
+	return jabatan;
+    }
+    
     
 }

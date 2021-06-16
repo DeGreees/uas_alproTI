@@ -61,6 +61,10 @@ public class Halutama extends javax.swing.JFrame {
         txtStatus = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtJurusan = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 102, 255));
@@ -163,7 +167,7 @@ public class Halutama extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         jPanel10.add(jPanel1, "login");
@@ -234,6 +238,14 @@ public class Halutama extends javax.swing.JFrame {
 
         txtJurusan.setText("jLabel11");
 
+        jLabel9.setText("Tanggal Lahir");
+
+        jLabel10.setText("jLabel10");
+
+        jLabel11.setText("jLabel11");
+
+        jLabel12.setText("jLabel12");
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -253,9 +265,13 @@ public class Halutama extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel8))
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel11))
                         .addGap(53, 53, 53)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel10)
                             .addComponent(txtJurusan)
                             .addComponent(txtNRP)
                             .addComponent(txtAlamat)
@@ -268,31 +284,39 @@ public class Halutama extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel2)
-                .addGap(49, 49, 49)
+                .addGap(45, 45, 45)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtNRP))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtNama))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtJurusan))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtAlamat))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtNRP))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtJK))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtStatus))
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtJurusan))
-                .addContainerGap(240, Short.MAX_VALUE))
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12))
+                .addGap(37, 37, 37)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtStatus))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
 
         jPanel8.add(jPanel9, "card2");
@@ -389,6 +413,9 @@ public class Halutama extends javax.swing.JFrame {
     private javax.swing.JButton btnlogout;
     private javax.swing.JButton btnmatkul;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -396,6 +423,7 @@ public class Halutama extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
